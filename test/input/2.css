@@ -1,0 +1,16 @@
+a {
+  border: var(--d);
+  background: var(--c);
+  padding: var(--a);
+}
+
+:root {
+  --a: 1%;
+  --b: calc(var(--a) + 2%);
+  --c: hsl(20deg, var(--b), var(--a));
+  --d: var(--c) var(--b) var(--a);
+}
+
+.theme {
+  --b: 3;
+}

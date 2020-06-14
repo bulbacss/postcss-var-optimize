@@ -1,0 +1,13 @@
+a {
+  border: 1 var(--b) 1px 1;
+  background: var(--q);
+  padding: 0
+}
+
+:root {
+  --b: 2;
+}
+
+.theme {
+  --b: 3;
+}

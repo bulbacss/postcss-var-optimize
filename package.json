@@ -1,0 +1,49 @@
+{
+  "name": "postcss-var-optimize",
+  "version": "0.0.2",
+  "description": "PostCSS plugin to convert css variables that are not redeclared",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "variables",
+    "optimization",
+    "bulma"
+  ],
+  "scripts": {
+    "test": "jest && npm run lint",
+    "lint": "eslint . --fix"
+  },
+  "author": "Adrien Foulon <adrien.foulon@tukan.hu>",
+  "license": "MIT",
+  "repository": "Tofandel/postcss-var-optimize",
+  "dependencies": {
+    "postcss": "*",
+    "postcss-calc": "*"
+  },
+  "devDependencies": {
+    "@logux/eslint-config": "^33.0.0",
+    "eslint": "^6.5.1",
+    "eslint-config-postcss": "^3.0.7",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-es5": "^1.4.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.19.0",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prefer-let": "^1.0.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-security": "^1.4.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "eslint-plugin-unicorn": "^12.1.0",
+    "jest": "^26.0.1"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-postcss"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

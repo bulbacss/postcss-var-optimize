@@ -1,0 +1,13 @@
+a {
+  border: hsl(20deg, var(--b), 1%) var(--b) 1%;
+  background: hsl(20deg, var(--b), 1%);
+  padding: 1%;
+}
+
+:root {
+  --b: 3%;
+}
+
+.theme {
+  --b: 3;
+}
