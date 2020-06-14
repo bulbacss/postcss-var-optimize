@@ -19,8 +19,8 @@
   "license": "MIT",
   "repository": "Tofandel/postcss-var-optimize",
   "dependencies": {
-    "postcss": "*",
-    "postcss-calc": "*"
+    "postcss": "^7.0.32",
+    "postcss-calc": "^7.0.2"
   },
   "devDependencies": {
     "@logux/eslint-config": "^33.0.0",
