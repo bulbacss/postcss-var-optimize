@@ -1,6 +1,6 @@
 {
   "name": "postcss-var-optimize",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "PostCSS plugin to convert css variables that are not redeclared and remove duplicates",
   "keywords": [
     "postcss",
@@ -10,6 +10,7 @@
     "optimization",
     "bulma"
   ],
+  "files": ["index.js"],
   "scripts": {
     "test": "jest && npm run lint",
     "lint": "eslint . --fix"

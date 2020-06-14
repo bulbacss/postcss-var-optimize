@@ -4,14 +4,18 @@ const postcss = require('postcss')
 
 let plugin = require('./../index')
 
-async function run (caseNum, plugins) {
+async function run (file, plugins) {
   plugins = plugins || []
-  let input = fs.readFileSync(resolve(__dirname, 'input/' + caseNum + '.css'))
-  let output = fs.readFileSync(resolve(__dirname, 'output/' + caseNum + '.css'))
+  let input = fs.readFileSync(resolve(__dirname, 'input/' + file + '.css'))
   let result = await postcss([plugin(), ...plugins])
     .process(input, { from: undefined })
-  expect(result.css).toEqual(output.toString())
-  expect(result.warnings()).toHaveLength(0)
+  if (fs.existsSync(resolve(__dirname, 'output/' + file + '.css'))) {
+    let output = fs.readFileSync(resolve(__dirname, 'output/' + file + '.css'))
+    expect(result.css).toEqual(output.toString())
+    expect(result.warnings()).toHaveLength(0)
+  } else {
+    fs.writeFileSync(resolve(__dirname, 'output/' + file + '.css'), result)
+  }
 }
 
 it('finds variables declared and modified', async () => {
@@ -38,4 +42,5 @@ it('works with nested variables', async () => {
 it('works with complex frameworks', async () => {
   await run(3)
   await run(4)
+  await run(5)
 })

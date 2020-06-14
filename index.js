@@ -6,7 +6,7 @@ module.exports = postcss.plugin('postcss-var-optimize', (opts = { }) => {
   let whitelist = opts.whitelist // Regex
   let blacklist = opts.blacklist
 
-  return (root, result) => {
+  function plugin (root) {
     let declared = {}
     let modified = {}
     let used = {}
@@ -19,8 +19,8 @@ module.exports = postcss.plugin('postcss-var-optimize', (opts = { }) => {
     }
 
     if (opts.test) {
-      opts.test.declared = declared
-      opts.test.modified = modified
+      opts.test.declared = opts.test.declared || declared
+      opts.test.modified = opts.test.modified || modified
     }
 
     // Walk trough all css variables
@@ -95,7 +95,11 @@ module.exports = postcss.plugin('postcss-var-optimize', (opts = { }) => {
         }
       })
     })
+  }
 
+  return (root, result) => {
+    plugin(root)
+    plugin(root) // 2 pass are needed for full minification
     calc()(root, result)
   }
 })
