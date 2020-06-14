@@ -1,7 +1,7 @@
 {
   "name": "postcss-var-optimize",
-  "version": "0.0.2",
-  "description": "PostCSS plugin to convert css variables that are not redeclared",
+  "version": "0.0.3",
+  "description": "PostCSS plugin to convert css variables that are not redeclared and remove duplicates",
   "keywords": [
     "postcss",
     "css",
