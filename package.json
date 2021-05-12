@@ -20,7 +20,7 @@
   "license": "MIT",
   "repository": "bulbacss/postcss-var-optimize",
   "dependencies": {
-    "postcss": "^7.0.32",
+    "postcss": "^8.2.10",
     "postcss-calc": "^7.0.2"
   },
   "devDependencies": {
