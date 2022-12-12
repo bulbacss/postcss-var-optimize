@@ -15,7 +15,6 @@
     "test": "jest && npm run lint",
     "lint": "eslint . --fix"
   },
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "author": "Adrien Foulon <adrien.foulon@tukan.hu>",
   "license": "MIT",
   "repository": "bulbacss/postcss-var-optimize",
