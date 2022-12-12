@@ -28,7 +28,7 @@ it('finds variables declared and modified', async () => {
   expect(opts.test.declared.a).toEqual('1')
   expect(opts.test.declared.b).toBeTruthy()
   expect(Object.keys(opts.test.modified)).toHaveLength(1)
-  expect(opts.test.modified.b).toBe('3')
+  expect(opts.test.modified.b).toBe('2')
 })
 
 it('removes the unmodified variables and replace them', async () => {
