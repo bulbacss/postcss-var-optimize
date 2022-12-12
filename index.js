@@ -1,12 +1,11 @@
-let postcss = require('postcss')
-let calc = require('postcss-calc')
+let Calc = require('postcss-calc')
 
-module.exports = postcss.plugin('postcss-var-optimize', (opts = { }) => {
+const plugin = (opts = {}) => {
   // Work with options here
   let whitelist = opts.whitelist // Regex
   let blacklist = opts.blacklist
 
-  function plugin (root) {
+  function exec(root) {
     let declared = {}
     let modified = {}
     let used = {}
@@ -46,7 +45,7 @@ module.exports = postcss.plugin('postcss-var-optimize', (opts = { }) => {
       unmodified[k] = replaceVar(unmodified[k], true)
     })
 
-    function replaceVar (val, recurse) {
+    function replaceVar(val, recurse) {
       let matches = val.matchAll(/var\(--([^)]*)\)/g)
       if (matches) {
         Array.from(matches).forEach(match => {
@@ -97,9 +96,15 @@ module.exports = postcss.plugin('postcss-var-optimize', (opts = { }) => {
     })
   }
 
-  return (root, result) => {
-    plugin(root)
-    plugin(root) // 2 pass are needed for full minification
-    calc()(root, result)
+  return {
+    postcssPlugin: 'postcss-var-optimize',
+    OnceExit(root, args) {
+      exec(root)
+      exec(root)
+      new Calc().OnceExit(root, args)
+    },
   }
-})
+}
+plugin.postcss = true
+
+module.exports = plugin

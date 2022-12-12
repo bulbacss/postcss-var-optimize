@@ -6268,7 +6268,7 @@ a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-i
     display: block;
     opacity: 0;
     pointer-events: none;
-    top: calc(100% + -4px);
+    top: calc(100% - 4px);
     transform: translateY(-5px);
     transition-duration: 86ms;
     transition-property: opacity, transform;
@@ -8161,8 +8161,8 @@ label.panel-block:hover {
 
 .columns.is-variable {
   --columnGap: 0.75rem;
-  margin-left: calc(-1*var(--columnGap));
-  margin-right: calc(-1*var(--columnGap));
+  margin-left: calc(var(--columnGap)*-1);
+  margin-right: calc(var(--columnGap)*-1);
 }
 
 .columns.is-variable .column {

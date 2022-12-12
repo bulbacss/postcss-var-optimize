@@ -8161,8 +8161,8 @@ label.panel-block:hover {
 
 .columns.is-variable {
   --columnGap: 0.75rem;
-  margin-left: calc(-1*var(--columnGap));
-  margin-right: calc(-1*var(--columnGap));
+  margin-left: calc(var(--columnGap)*-1);
+  margin-right: calc(var(--columnGap)*-1);
 }
 
 .columns.is-variable .column {
