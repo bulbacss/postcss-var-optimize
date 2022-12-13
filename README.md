@@ -41,11 +41,11 @@ a {
 
 ## Usage
 
-Check you project for existed PostCSS config: `postcss.config.js`
-in the project root, `"postcss"` section in `package.json`
-or `postcss` in bundle config.
+Check your project for an existing PostCSS config in `postcss.config.js`
+in the project root, or a `"postcss"` section in `package.json`
+or `postcss` in bundle configuration.
 
-If you already use PostCSS, add the plugin to plugins list:
+If you already use PostCSS, add the plugin to the plugins list:
 
 ```diff
 module.exports = {
@@ -56,12 +56,12 @@ module.exports = {
 }
 ```
 
-If you do not use PostCSS, add it according to [official docs]
-and set this plugin in settings.
+If you do not use PostCSS, add it according to the [official docs]
+and add this plugin in the settings like previously indicated.
 
 [official docs]: https://github.com/postcss/postcss#usage
 
 ## Options
 
-- `whitelist`: a regex or a string indicating the name of the variables allowed to be optimized away (do not include the --), if set only the matching ones will be optimized
-- `blacklist`: a regex or a string indicating the name of the variables disallowed to be optimized away (do not include the --)
+- `whitelist`: a regex or a string (or array of those) indicating the name of the variables allowed to be optimized away (do not include the --), if set only the matching ones will be optimized
+- `blacklist`: a regex or a string (or array of those) indicating the name of the variables disallowed to be optimized away (do not include the --)
