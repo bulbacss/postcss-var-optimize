@@ -6,9 +6,9 @@ a {
 
 :root {
   --a: 1%;
-  --b: calc(var(--a) + 2%);
-  --c: hsl(20deg, var(--b), var(--a));
   --d: var(--c) var(--b) var(--a);
+  --c: hsl(20deg, var(--b), var(--a));
+  --b: calc(var(--a) + 2%);
 }
 
 .theme {

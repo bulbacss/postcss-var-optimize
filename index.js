@@ -2,21 +2,15 @@ let Calc = require('postcss-calc')
 
 const plugin = (opts = {}) => {
   // Work with options here
-  const whitelist = opts.whitelist // Regex
-  const blacklist = opts.blacklist
+  const whitelist = !opts.whitelist || Array.isArray(opts.whitelist) ? opts.whitelist : [opts.whitelist]
+  const blacklist = !opts.blacklist || Array.isArray(opts.blacklist) ? opts.blacklist : [opts.blacklist]
 
   const declared = {}
   const modified = {}
   const used = {}
-  const excludes = {}
   const values = {}
 
-  if (opts.excludes) {
-    opts.excludes.forEach(v => {
-      excludes[v] = true
-    })
-  }
-
+  // @internal option for testing
   if (opts.test) {
     opts.test.declared = declared
     opts.test.modified = modified
@@ -31,10 +25,22 @@ const plugin = (opts = {}) => {
     return value.replaceAll(/var\(--([^)]*)\)/g, (match, key) => {
       wasUsed(key);
       if (useModified) {
-       return !(key in modified) && !excludes[key] && key in declared ? interpolate(declared[key], useModified) : match
+       return !(key in modified) && isAllowed(key) && key in declared ? interpolate(declared[key], useModified) : match
       }
-      return !excludes[key] && key in declared ? interpolate(declared[key], useModified) : match
+      return isAllowed(key) && key in declared ? interpolate(declared[key], useModified) : match
     })
+  }
+
+  function isAllowed(key) {
+    if (blacklist && blacklist.some((black) => key.match(black))) {
+      return false;
+    }
+    if (whitelist && whitelist.some((white) => key.match(white))) {
+      return true;
+    } else if (whitelist) {
+      return false;
+    }
+    return true;
   }
 
   return {
@@ -53,13 +59,9 @@ const plugin = (opts = {}) => {
         if (decl.prop.startsWith('--')) {
           const prop = decl.prop.slice(2)
 
-          if (blacklist && prop.match(blacklist)) return
-
-          if (!whitelist || prop.match(whitelist)) {
-            const value = interpolate(decl.value)
-            if (interpolate(declared[prop]) !== value) {
-              modified[prop] = value
-            }
+          const value = interpolate(decl.value)
+          if (interpolate(declared[prop]) !== value) {
+            modified[prop] = value
           }
         }
 
@@ -81,7 +83,7 @@ const plugin = (opts = {}) => {
     Declaration(decl) {
       if (decl.prop.startsWith('--')) {
         const prop = decl.prop.slice(2)
-        if ((!(prop in modified) || !(prop in used)) && !excludes[prop]) {
+        if ((!(prop in modified) || !(prop in used)) && isAllowed(prop)) {
           decl.remove()
           return;
         }

@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`options uses blacklist: simple-theme {"blacklist":["a","/^b$/"]} 1`] = `
+"a {
+  border: var(--a) var(--b) 1px var(--a);
+  background: var(--q);
+  padding: 0
+}
+
+:root {
+  --a: 1;
+  --b: 2;
+}
+
+.theme {
+  --b: 3;
+}
+"
+`;
+
+exports[`options uses blacklist: theme-with-nested-variables {"blacklist":"/^b|c$/"} 1`] = `
+"a {
+  border: var(--c) var(--b) 1%;
+  background: var(--c);
+  padding: 1%;
+}
+
+:root {
+  --c: hsl(20deg, var(--b), 1%);
+  --b: 3%;
+}
+
+.theme {
+  --b: 3;
+}
+"
+`;
+
+exports[`options uses whitelist: simple-theme {"whitelist":["a","/^b$/"]} 1`] = `
+"a {
+  border: 1 var(--b) 1px 1;
+  background: var(--q);
+  padding: 0
+}
+
+:root {
+  --b: 2;
+  --c: 3;
+}
+
+.theme {
+  --b: 3;
+  --c: 3;
+}
+"
+`;
+
+exports[`options uses whitelist: theme-with-nested-variables {"whitelist":"/^b|c$/"} 1`] = `
+"a {
+  border: var(--d);
+  background: hsl(20deg, var(--b), var(--a));
+  padding: var(--a);
+}
+
+:root {
+  --a: 1%;
+  --d: hsl(20deg, var(--b), var(--a)) var(--b) var(--a);
+  --b: calc(var(--a) + 2%);
+}
+
+.theme {
+  --b: 3;
+}
+"
+`;
